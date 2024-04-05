@@ -17,4 +17,3 @@
 </table>
 
 # <p style="text-align: center;"> Nome do Projeto</p>
-
