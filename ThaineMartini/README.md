@@ -1,4 +1,4 @@
-<title>Comandos, Aquisição e Armazenamento de dados de uma bancada de teste de um sistema de energia híbrido para drone</title>
+#Comandos, Aquisição e Armazenamento de dados de uma bancada de teste de um sistema de energia híbrido para drone
 
 <p class="text-info recuo">
 O mercado atual de drones, são raras as opções que possuem autonomia de voo maior que 50 minutos, fator esse que pode dificultar ou mesmo inviabilizar a realização de algumas missões. A marca mais conhecida do mercado (DJI) possui apenas uma opção comercial que promete atuar em uma margem maior de tempo que o limiar mencionado. Essa condição existe por conta das limitações de densidade energética dos armazenadores de energia disponíveis no mercado: baterias. Nesse contexto, uma opção viável para aumentar a autonomia consiste na utilização de conjuntos híbridos que podem ser embarcados na aeronave, utilizando um motor à combustão como parte do sistema de geração de energia elétrica.
