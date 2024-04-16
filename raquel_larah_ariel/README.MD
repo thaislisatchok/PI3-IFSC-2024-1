@@ -5,7 +5,7 @@
     <p style="font-size: 8pt;">
     INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DE SANTA CATARINA<br>
     CAMPUS FLORIANÓPOLIS<br>
-    DEPARTAMENTO ACADEMICO DE ELETRÔNCIA<br>
+    DEPARTAMENTO ACADEMICO DE ELETRÔNICA<br>
     ENGENHARIA ELETRÔNICA<br>
     PROJETO INTEGRADOR III (PIN22107) - 2024/1</p>
 </b></td>
@@ -50,7 +50,7 @@ Este dispositivo obtém esta funcionalidade utilizando uma hélice acoplada a um
 
 ## Visão geral
 
-![Circuito geral simplificado](assets\circuito_geral_simplificado.png)
+![Circuito geral simplificado](./assets/circuito_geral_simplificado.png)
 
 ## Materiais
 
