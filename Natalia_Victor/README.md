@@ -1,3 +1,8 @@
+**INSTITUTO FEDERAL DE SANTA CATARINA**
+**Unidade Curricular:**  Projeto Integrador 3 
+**Professor:**  Robinson Pizzio e Matheus Leitzke Pinto 
+**Alunos:**  Natália Besen e Victor Lompa Schwider
+
 #  Analisador de Sinal de Wi-fi
 
 O projeto do Analisador de Sinal de Wi-Fi visa desenvolver um dispositivo destinado a medir e mapear a intensidade do sinal Wi-Fi em um ambiente específico. A importância dessa ferramenta está na sua capacidade de identificar áreas com sinal fraco ou "pontos cegos" em uma rede sem fio, proporcionando informações valiosas para a otimização da conectividade.
