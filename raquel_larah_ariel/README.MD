@@ -31,6 +31,11 @@ De acordo com KHAYDAROV et al. (2009), a temperatura ideal da reação para se o
 
 Para aquecer a solução é utilizado um ebulidor comercial de 700 W. Para a quantidade de líquido utilizado aproximou-se que levará em torno de 7 minutos para que a solução esteja na temperatura ideal. Utilizando o sensor de temperatura DS18B20 o dispositivo controla um relé para manter a temperatura dentro da faixa ideal.
 
+||
+|:-:|
+|![Circuito geral simplificado](./assets/circuito_aquecimento.png)|
+|<a id="fig-aq">**Figura ?** - Diagrama simplificado do sistema de aquecimento do dispostivo.</a>|
+
 ### Trocar a polaridade da tensão aplicada nos eletrodos a cada 240 segundos
 Segundo KHAYDAROV et al. (2009) é necessária a troca de polaridade da tensão aplicada nos eletrodos para reduzir o depósito de óxido de prata nos eletrodos e assim tornar a reação mais eficiente.
 
@@ -72,7 +77,7 @@ Este dispositivo obtém esta funcionalidade utilizando uma hélice acoplada a um
 
 ## Referências
 
-> <tag id="ref1"/> [1] KHAYDAROV, R.A.; KHAYDAROV, R.R.; GAPUROVA, O. et al. Electrochemical method for the synthesis of silver nanoparticles. J Nanopart Res 11, 1193–1200 (2009). https://doi.org/10.1007/s11051-008-9513-x
+> <a id="ref1"/> [1] KHAYDAROV, R.A.; KHAYDAROV, R.R.; GAPUROVA, O. et al. Electrochemical method for the synthesis of silver nanoparticles. J Nanopart Res 11, 1193–1200 (2009). https://doi.org/10.1007/s11051-008-9513-x
 
-> <tag id="ref2"/> [2] PINHEIRO, A.; MANIA, E.; FERREIRA, E. S. Síntese e caracterização de nanopartículas de prata coloidais em solução aquosa para o estudo da supressão de fluorescência. n. 24 (2020): XXIV Seminário de Iniciação Científica. https://doi.org/10.13102/semic.vi24.7130
+> <a id="ref2"/> [2] PINHEIRO, A.; MANIA, E.; FERREIRA, E. S. Síntese e caracterização de nanopartículas de prata coloidais em solução aquosa para o estudo da supressão de fluorescência. n. 24 (2020): XXIV Seminário de Iniciação Científica. https://doi.org/10.13102/semic.vi24.7130
 
