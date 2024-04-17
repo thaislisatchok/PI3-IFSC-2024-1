@@ -2,7 +2,7 @@
 
 Projeto de um dispositivo para auxilio de pessoas com visão debilitada
 
-# Concepção
+
 
 Acesso rápido:
 
@@ -10,6 +10,8 @@ Acesso rápido:
   - [Design/Projeto](./design.md)
   - [Implementação](./implementação.md)
   - [Operação](./operação.md)
+
+# Concepção
 
 ## Intuito do Projeto:
 
