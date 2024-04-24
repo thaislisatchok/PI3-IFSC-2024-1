@@ -19,7 +19,7 @@ Figura 1 - Diagrama do hardware
 <img src="img/diagrama_hardware.jpg">
 <figcaption>Fonte: Acervo pessoal</figcaption>
 </div>
-
+#### Cronograma idealisado 
 ## Desenvolvimento
 ### Componentes
 
