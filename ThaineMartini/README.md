@@ -21,20 +21,20 @@ Figura 1 - Diagrama do hardware
 </div>
 
 #### Cronograma idealizado 
-12/03 - Cronograma
-20/03 - Levantamento dos componentes de projeto e pré requisitos
-27/03 - Levantamento dos componentes de projeto e pré requisitos
-03/04 - Esquemático da placa
-10/04 - Esquemático da placa
-17/04 - Layout da placa
-24/04 - Layout da placa
-08/05 - Fabricação da placa, documentação e programação do micro
-15/05 - Fabricação da placa, documentação e programação do micro
-22/05 - 1° TESTE e levantamento de log para análise
-29/05 - Ajustes
-05/06 - 2° TESTE e levantamento de log para análise
-12/06 - Ajustes
-19/06 - Apresentação
+<p> 12/03 - Cronograma </p>
+<p> 20/03 - Levantamento dos componentes de projeto e pré requisitos </p>
+<p> 27/03 - Levantamento dos componentes de projeto e pré requisitos </p>
+<p> 03/04 - Esquemático da placa </p>
+<p> 10/04 - Esquemático da placa </p>
+<p> 17/04 - Layout da placa </p>
+<p> 24/04 - Layout da placa </p>
+<p> 08/05 - Fabricação da placa, documentação e programação do micro </p>
+<p> 15/05 - Fabricação da placa, documentação e programação do micro </p>
+<p> 22/05 - 1° TESTE e levantamento de log para análise </p>
+<p> 29/05 - Ajustes </p>
+<p> 05/06 - 2° TESTE e levantamento de log para análise </p>
+<p> 12/06 - Ajustes </p>
+<p> 19/06 - Apresentação </p>
 
 ## Desenvolvimento
 
