@@ -46,11 +46,14 @@ Figura 1 - Diagrama do hardware
 <p> Conversor CC/CC 48V - 5V: THL15-4811WL, robusto suficiente para aguentar os picos de tensão (até 60V) e tem disponivel no laboratório </p>
 <p> Sensor de temperatura: NTC 33950 100k, o sensor deve medir pelo menos de 10 C até 200 C, o sensor escolhido mede de -4 a 270 C </p>
 <p> Amplificador Opercional: TLV 9044 DIR, escolhido pela disponibilidade no laboratório </p>
-<p> Regulador de Tensão </p>
+<p> Regulador de Tensão: LM 1117 </p>
 
 ### Projeto
+<p> O projeto foi realizado de acordo com diagrama de blocos demonstrado anteriormente</p>
 #### Leitura da corrente
-#### Leituta da tensão 
+
+#### Leitura da tensão 
+<p> Para a leitura da Tensão foi usado um divisor resistivo de tensão juntamente com um filtro Sallen-Key de segunda ordem (passa-baixa) para a diminuição de ruido na leitura do sinal</p>
 ### Esquemático 
 ### Layout
 ### Programação
