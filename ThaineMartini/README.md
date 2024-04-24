@@ -17,4 +17,4 @@ Esse projeto integrador deve cumprir os seguintes requisitos, aferir e condicion
 Figura 1
 <img src="img/diagrama_hardware.jpg">
 
-<figcaption>Fonte: Acervo pessoal</figcaption>
+<figcaption align="center" >Fonte: Acervo pessoal</figcaption>
