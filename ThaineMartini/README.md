@@ -39,7 +39,18 @@ Figura 1 - Diagrama do hardware
 ## Desenvolvimento
 
 ### Componentes
+<p> Os componentes foram selecionados de acordo com a disponibilidade no laboratório e com os requisitos o projeto </p>
+<p> Servo motor: MG995, a aplicação necessita de um servo robusto e esse componente tem disponível no laboratório </p>
+<p> UControlador: F280025C da Texas Instruments, um microcontrolador que aguenta o sistema de controle que será aplicado futuramente </p>
+<p> Sensor de corrente: ACS758 150B, o máximo de corrente que o sensor terá que medir é de 80A, o sensor escolhido mede até 150A e tem disponivel no laboratório </p>
+<p> Conversor CC/CC 48V - 5V: THL15-4811WL, robusto suficiente para aguentar os picos de tensão (até 60V) e tem disponivel no laboratório </p>
+<p> Sensor de temperatura: NTC 33950 100k, o sensor deve medir pelo menos de 10 C até 200 C, o sensor escolhido mede de -4 a 270 C </p>
+<p> Amplificador Opercional: TLV 9044 DIR, escolhido pela disponibilidade no laboratório </p>
+<p> Regulador de Tensão </p>
 
+### Projeto
+#### Leitura da corrente
+#### Leituta da tensão 
 ### Esquemático 
 ### Layout
 ### Programação
