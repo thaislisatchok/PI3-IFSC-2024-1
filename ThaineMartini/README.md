@@ -15,5 +15,5 @@ Para realizar esse projeto, foi desenvolvida uma bancada de testes pelo laborat�
 Esse projeto integrador deve cumprir os seguintes requisitos, aferir e condicionar os sinais de RPM, temperatura do motor a combustão interna (MCI), corrente e tensão no barramento CC (pós-retificador) do sistema. Deve gerar dois sinais de pulse width modulation (PWM), um para o servo motor que acelera o MCI e outro para o driver que movimenta o BLDC para dar partida no motor. Esta placa também deve possuir dois conversores um de 12V e outro de 5V para a alimentação de payload e periféricos do drone. Assim como tem que gerar um arquivo de dados que contenha todos os sinais que foram monitorados. Na Figura 1, está delineado em formato de diagrama o projeto da PCI.
 </p>
 Figura 1
-<img src=“img/diagrama_hardware.jpg”>
+<img src=“img/[diagrama_hardware.jpg](https://github.com/thainemartini/PI3-IFSC-2024-1/blob/main/ThaineMartini/img/diagrama_hardware.jpg)”>
 <figcaption>Fonte: Acervo pessoal</figcaption>
