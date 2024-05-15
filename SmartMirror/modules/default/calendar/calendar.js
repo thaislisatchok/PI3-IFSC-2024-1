@@ -1,5 +1,3 @@
-/* global CalendarUtils */
-
 Module.register("calendar", {
 	// Define module defaults
 	defaults: {
@@ -36,7 +34,6 @@ Module.register("calendar", {
 		hideDuplicates: true,
 		showTimeToday: false,
 		colored: false,
-		forceUseCurrentTime: false,
 		tableClass: "small",
 		calendars: [
 			{
@@ -92,12 +89,12 @@ Module.register("calendar", {
 		Log.info(`Starting module: ${this.name}`);
 
 		if (this.config.colored) {
-			Log.warn("Your are using the deprecated config values 'colored'. Please switch to 'coloredSymbol' & 'coloredText'!");
+			Log.warn("Your are using the deprecated config values 'colored'. Please switch to  'coloredSymbol' & 'coloredText'!");
 			this.config.coloredText = true;
 			this.config.coloredSymbol = true;
 		}
 		if (this.config.coloredSymbolOnly) {
-			Log.warn("Your are using the deprecated config values 'coloredSymbolOnly'. Please switch to 'coloredSymbol' & 'coloredText'!");
+			Log.warn("Your are using the deprecated config values 'coloredSymbolOnly'. Please switch to  'coloredSymbol' & 'coloredText'!");
 			this.config.coloredText = false;
 			this.config.coloredSymbol = true;
 		}
@@ -202,11 +199,6 @@ Module.register("calendar", {
 		}
 
 		this.updateDom(this.config.animationSpeed);
-	},
-
-	eventEndingWithinNextFullTimeUnit (event, ONE_DAY) {
-		const now = new Date();
-		return event.endDate - now <= ONE_DAY;
 	},
 
 	// Override dom generator.
@@ -443,7 +435,7 @@ Module.register("calendar", {
 					}
 				} else {
 					// Show relative times
-					if (event.startDate >= now || (event.fullDayEvent && this.eventEndingWithinNextFullTimeUnit(event, ONE_DAY))) {
+					if (event.startDate >= now || (event.fullDayEvent && event.today)) {
 						// Use relative time
 						if (!this.config.hideTime && !event.fullDayEvent) {
 							timeWrapper.innerHTML = CalendarUtils.capFirst(moment(event.startDate, "x").calendar(null, { sameElse: this.config.dateFormat }));
@@ -459,7 +451,7 @@ Module.register("calendar", {
 						}
 						if (event.fullDayEvent) {
 							// Full days events within the next two days
-							if (event.today || (event.fullDayEvent && this.eventEndingWithinNextFullTimeUnit(event, ONE_DAY))) {
+							if (event.today) {
 								timeWrapper.innerHTML = CalendarUtils.capFirst(this.translate("TODAY"));
 							} else if (event.dayBeforeYesterday) {
 								if (this.translate("DAYBEFOREYESTERDAY") !== "DAYBEFOREYESTERDAY") {
@@ -573,16 +565,9 @@ Module.register("calendar", {
 		const ONE_HOUR = ONE_MINUTE * 60;
 		const ONE_DAY = ONE_HOUR * 24;
 
-		let now, today, future;
-		if (this.config.forceUseCurrentTime || this.defaults.forceUseCurrentTime) {
-			now = new Date();
-			today = moment().startOf("day");
-			future = moment().startOf("day").add(this.config.maximumNumberOfDays, "days").toDate();
-		} else {
-			now = new Date(Date.now()); // Can use overridden time
-			today = moment(now).startOf("day");
-			future = moment(now).startOf("day").add(this.config.maximumNumberOfDays, "days").toDate();
-		}
+		const now = new Date();
+		const today = moment().startOf("day");
+		const future = moment().startOf("day").add(this.config.maximumNumberOfDays, "days").toDate();
 		let events = [];
 
 		for (const calendarUrl in this.calendarData) {

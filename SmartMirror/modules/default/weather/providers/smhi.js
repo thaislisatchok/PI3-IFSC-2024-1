@@ -1,9 +1,5 @@
 /* global WeatherProvider, WeatherObject */
 
-/* This class is a provider for SMHI (Sweden only).
- * Metric system is the only supported unit,
- * see https://www.smhi.se/
- */
 WeatherProvider.register("smhi", {
 	providerName: "SMHI",
 

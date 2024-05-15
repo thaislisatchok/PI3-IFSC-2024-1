@@ -2,11 +2,11 @@ Module.register("compliments", {
 	// Module config defaults.
 	defaults: {
 		compliments: {
-			anytime: ["Hey there sexy!"],
-			morning: ["Good morning, handsome!", "Enjoy your day!", "How was your sleep?"],
-			afternoon: ["Hello, beauty!", "You look sexy!", "Looking good today!"],
-			evening: ["Wow, you look hot!", "You look nice!", "Hi, sexy!"],
-			"....-01-01": ["Happy new year!"]
+			anytime: ["E ai bonitão!"],
+			morning: ["Bom dia flor do dia!", "Que seu dia possa ser abençoado!", "Dormiu bem?"],
+			afternoon: ["Olá amigo!", "Ta no shape hein!", "Bora dale para não tomale!"],
+			evening: ["Wow, dia rendeu hein!", "Como foi seu dia hoje?", "Tenha um ótimo descanso!"],
+			"....-01-01": ["Feliz ano novo!"]
 		},
 		updateInterval: 30000,
 		remoteFile: null,
@@ -50,7 +50,7 @@ Module.register("compliments", {
 	 * @returns {number} a random index of given array
 	 */
 	randomIndex (compliments) {
-		if (compliments.length <= 1) {
+		if (compliments.length === 1) {
 			return 0;
 		}
 

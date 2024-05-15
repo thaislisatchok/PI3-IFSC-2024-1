@@ -1,5 +1,4 @@
-const crypto = require("node:crypto");
-const stream = require("node:stream");
+const stream = require("stream");
 const FeedMe = require("feedme");
 const iconv = require("iconv-lite");
 const { htmlToText } = require("html-to-text");
@@ -61,8 +60,7 @@ const NewsfeedFetcher = function (url, reloadInterval, encoding, logFeedWarnings
 					description: description,
 					pubdate: pubdate,
 					url: url,
-					useCorsProxy: useCorsProxy,
-					hash: crypto.createHash("sha256").update(`${pubdate} :: ${title} :: ${url}`).digest("hex")
+					useCorsProxy: useCorsProxy
 				});
 			} else if (logFeedWarnings) {
 				Log.warn("Can't parse feed item:");

@@ -1,7 +1,7 @@
 /**
  * @external Moment
  */
-const path = require("node:path");
+const path = require("path");
 const moment = require("moment");
 
 const zoneTable = require(path.join(__dirname, "windowsZones.json"));
@@ -56,7 +56,7 @@ const CalendarFetcherUtils = {
 				event.start.tz = "";
 				Log.debug(`ical offset=${current_offset} date=${date}`);
 				mm = moment(date);
-				let x = moment(new Date()).utcOffset();
+				let x = parseInt(moment(new Date()).utcOffset());
 				Log.debug(`net mins=${current_offset * 60 - x}`);
 
 				mm = mm.add(x - current_offset * 60, "minutes");
@@ -128,26 +128,24 @@ const CalendarFetcherUtils = {
 		};
 
 		const eventDate = function (event, time) {
-			return CalendarFetcherUtils.isFullDayEvent(event) ? moment(event[time]).startOf("day") : moment(event[time]);
+			return CalendarFetcherUtils.isFullDayEvent(event) ? moment(event[time], "YYYYMMDD") : moment(new Date(event[time]));
 		};
 
 		Log.debug(`There are ${Object.entries(data).length} calendar entries.`);
-
-		const now = new Date(Date.now());
-		const todayLocal = moment(now).startOf("day").toDate();
-		const futureLocalDate
-			= moment(now)
-				.startOf("day")
-				.add(config.maximumNumberOfDays, "days")
-				.subtract(1, "seconds") // Subtract 1 second so that events that start on the middle of the night will not repeat.
-				.toDate();
-
 		Object.entries(data).forEach(([key, event]) => {
 			Log.debug("Processing entry...");
-			let pastLocalDate = todayLocal;
+			const now = new Date();
+			const today = moment().startOf("day").toDate();
+			const future
+				= moment()
+					.startOf("day")
+					.add(config.maximumNumberOfDays, "days")
+					.subtract(1, "seconds") // Subtract 1 second so that events that start on the middle of the night will not repeat.
+					.toDate();
+			let past = today;
 
 			if (config.includePastEvents) {
-				pastLocalDate = moment(now).startOf("day").subtract(config.maximumNumberOfDays, "days").toDate();
+				past = moment().startOf("day").subtract(config.maximumNumberOfDays, "days").toDate();
 			}
 
 			// FIXME: Ugly fix to solve the facebook birthday issue.
@@ -161,33 +159,33 @@ const CalendarFetcherUtils = {
 
 			if (event.type === "VEVENT") {
 				Log.debug(`Event:\n${JSON.stringify(event)}`);
-				let startMoment = eventDate(event, "start");
-				let endMoment;
+				let startDate = eventDate(event, "start");
+				let endDate;
 
 				if (typeof event.end !== "undefined") {
-					endMoment = eventDate(event, "end");
+					endDate = eventDate(event, "end");
 				} else if (typeof event.duration !== "undefined") {
-					endMoment = startMoment.clone().add(moment.duration(event.duration));
+					endDate = startDate.clone().add(moment.duration(event.duration));
 				} else {
 					if (!isFacebookBirthday) {
 						// make copy of start date, separate storage area
-						endMoment = moment(startMoment.valueOf());
+						endDate = moment(startDate.format("x"), "x");
 					} else {
-						endMoment = moment(startMoment).add(1, "days");
+						endDate = moment(startDate).add(1, "days");
 					}
 				}
 
-				Log.debug(`start: ${startMoment.toDate()}`);
-				Log.debug(`end:: ${endMoment.toDate()}`);
+				Log.debug(`start: ${startDate.toDate()}`);
+				Log.debug(`end:: ${endDate.toDate()}`);
 
 				// Calculate the duration of the event for use with recurring events.
-				const durationMs = endMoment.valueOf() - startMoment.valueOf();
-				Log.debug(`duration: ${durationMs}`);
+				let duration = parseInt(endDate.format("x")) - parseInt(startDate.format("x"));
+				Log.debug(`duration: ${duration}`);
 
 				// FIXME: Since the parsed json object from node-ical comes with time information
 				// this check could be removed (?)
 				if (event.start.length === 8) {
-					startMoment = startMoment.startOf("day");
+					startDate = startDate.startOf("day");
 				}
 
 				const title = CalendarFetcherUtils.getTitleFromEvent(event);
@@ -247,11 +245,11 @@ const CalendarFetcherUtils = {
 				const geo = event.geo || false;
 				const description = event.description || false;
 
-				if (event.rrule && typeof event.rrule !== "undefined" && !isFacebookBirthday) {
+				if (typeof event.rrule !== "undefined" && event.rrule !== null && !isFacebookBirthday) {
 					const rule = event.rrule;
 
-					const pastMoment = moment(pastLocalDate);
-					const futureMoment = moment(futureLocalDate);
+					const pastMoment = moment(past);
+					const futureMoment = moment(future);
 
 					// can cause problems with e.g. birthdays before 1900
 					if ((rule.options && rule.origOptions && rule.origOptions.dtstart && rule.origOptions.dtstart.getFullYear() < 1900) || (rule.options && rule.options.dtstart && rule.options.dtstart.getFullYear() < 1900)) {
@@ -262,8 +260,8 @@ const CalendarFetcherUtils = {
 					// For recurring events, get the set of start dates that fall within the range
 					// of dates we're looking for.
 					// kblankenship1989 - to fix issue #1798, converting all dates to locale time first, then converting back to UTC time
-					let pastLocal;
-					let futureLocal;
+					let pastLocal = 0;
+					let futureLocal = 0;
 					if (CalendarFetcherUtils.isFullDayEvent(event)) {
 						Log.debug("fullday");
 						// if full day event, only use the date part of the ranges
@@ -279,57 +277,17 @@ const CalendarFetcherUtils = {
 							pastLocal = pastMoment.toDate();
 						} else {
 							// otherwise use NOW.. cause we shouldn't use any before now
-							pastLocal = moment(now).toDate(); //now
+							pastLocal = moment().toDate(); //now
 						}
 						futureLocal = futureMoment.toDate(); // future
 					}
 					Log.debug(`Search for recurring events between: ${pastLocal} and ${futureLocal}`);
-					const hasByWeekdayRule = rule.options.byweekday !== undefined && rule.options.byweekday !== null;
-					const oneDayInMs = 24 * 60 * 60 * 1000;
-					Log.debug(`RRule: ${rule.toString()}`);
-					rule.options.tzid = null; // RRule gets *very* confused with timezones
-					let dates = rule.between(new Date(pastLocal.valueOf() - oneDayInMs), new Date(futureLocal.valueOf() + oneDayInMs), true, () => { return true; });
+					let dates = rule.between(pastLocal, futureLocal, true, limitFunction);
 					Log.debug(`Title: ${event.summary}, with dates: ${JSON.stringify(dates)}`);
 					dates = dates.filter((d) => {
 						if (JSON.stringify(d) === "null") return false;
 						else return true;
 					});
-
-					// RRule can generate dates with an incorrect recurrence date. Process the array here and apply date correction.
-					if (hasByWeekdayRule) {
-						Log.debug("Rule has byweekday, checking for correction");
-						dates.forEach((date, index, arr) => {
-							// NOTE: getTimezoneOffset() is negative of the expected value. For America/Los_Angeles under DST (GMT-7),
-							// this value is +420. For Australia/Sydney under DST (GMT+11), this value is -660.
-							const tzOffset = date.getTimezoneOffset() / 60;
-							const hour = date.getHours();
-							if ((tzOffset < 0) && (hour < -tzOffset)) { // east of GMT
-								Log.debug(`East of GMT (tzOffset: ${tzOffset}) and hour=${hour} < ${-tzOffset}, Subtracting 1 day from ${date}`);
-								arr[index] = new Date(date.valueOf() - oneDayInMs);
-							} else if ((tzOffset > 0) && (hour >= (24 - tzOffset))) { // west of GMT
-								Log.debug(`West of GMT (tzOffset: ${tzOffset}) and hour=${hour} >= 24-${tzOffset}, Adding 1 day to ${date}`);
-								arr[index] = new Date(date.valueOf() + oneDayInMs);
-							}
-						});
-						// Adjusting the dates could push it beyond the 'until' date, so filter those out here.
-						if (rule.options.until !== null) {
-							dates = dates.filter((date) => {
-								return date.valueOf() <= rule.options.until.valueOf();
-							});
-						}
-					}
-
-					// The dates array from rrule can be confused by DST. If the event was created during DST and we
-					// are querying a date range during non-DST, rrule can have the incorrect time for the date range.
-					// Reprocess the array here computing and applying the time offset.
-					dates.forEach((date, index, arr) => {
-						let adjustHours = CalendarFetcherUtils.calculateTimezoneAdjustment(event, date);
-						if (adjustHours !== 0) {
-							Log.debug(`Applying timezone adjustment hours=${adjustHours} to ${date}`);
-							arr[index] = new Date(date.valueOf() + (adjustHours * 60 * 60 * 1000));
-						}
-					});
-
 					// The "dates" array contains the set of dates within our desired date range range that are valid
 					// for the recurrence rule. *However*, it's possible for us to have a specific recurrence that
 					// had its date changed from outside the range to inside the range.  For the time being,
@@ -339,35 +297,108 @@ const CalendarFetcherUtils = {
 					// Would be great if there was a better way to handle this.
 					Log.debug(`event.recurrences: ${event.recurrences}`);
 					if (event.recurrences !== undefined) {
-						for (let dateKey in event.recurrences) {
+						for (let r in event.recurrences) {
 							// Only add dates that weren't already in the range we added from the rrule so that
-							// we don't double-add those events.
-							let d = new Date(dateKey);
-							if (!moment(d).isBetween(pastMoment, futureMoment)) {
-								dates.push(d);
+							// we don"t double-add those events.
+							if (moment(new Date(r)).isBetween(pastMoment, futureMoment) !== true) {
+								dates.push(new Date(r));
 							}
 						}
 					}
-
-					// Lastly, sometimes rrule doesn't include the event.start even if it is in the requested range. Ensure
-					// inclusion here. Unfortunately dates.includes() doesn't find it so we have to do forEach().
-					{
-						let found = false;
-						dates.forEach((d) => { if (d.valueOf() === event.start.valueOf()) found = true; });
-						if (!found) {
-							Log.debug(`event.start=${event.start} was not included in results from rrule; adding`);
-							dates.splice(0, 0, event.start);
-						}
-					}
-
 					// Loop through the set of date entries to see which recurrences should be added to our event list.
 					for (let d in dates) {
 						let date = dates[d];
 						let curEvent = event;
-						let curDurationMs = durationMs;
 						let showRecurrence = true;
 
-						startMoment = moment(date);
+						// set the time information in the date to equal the time information in the event
+						date.setUTCHours(curEvent.start.getUTCHours(), curEvent.start.getUTCMinutes(), curEvent.start.getUTCSeconds(), curEvent.start.getUTCMilliseconds());
+
+						// Get the offset of today where we are processing
+						// This will be the correction, we need to apply.
+						let nowOffset = new Date().getTimezoneOffset();
+						// For full day events, the time might be off from RRULE/Luxon problem
+						// Get time zone offset of the rule calculated event
+						let dateoffset = date.getTimezoneOffset();
+
+						// Reduce the time by the following offset.
+						Log.debug(` recurring date is ${date} offset is ${dateoffset}`);
+
+						let dh = moment(date).format("HH");
+						Log.debug(` recurring date is ${date} offset is ${dateoffset / 60} Hour is ${dh}`);
+
+						if (CalendarFetcherUtils.isFullDayEvent(event)) {
+							Log.debug("Fullday");
+							// If the offset is negative (east of GMT), where the problem is
+							if (dateoffset < 0) {
+								if (dh < Math.abs(dateoffset / 60)) {
+									// if the rrule byweekday WAS explicitly set , correct it
+									// reduce the time by the offset
+									if (curEvent.rrule.origOptions.byweekday !== undefined) {
+										// Apply the correction to the date/time to get it UTC relative
+										date = new Date(date.getTime() - Math.abs(24 * 60) * 60000);
+									}
+									// the duration was calculated way back at the top before we could correct the start time..
+									// fix it for this event entry
+									//duration = 24 * 60 * 60 * 1000;
+									Log.debug(`new recurring date1 fulldate is ${date}`);
+								}
+							} else {
+								// if the timezones are the same, correct date if needed
+								//if (event.start.tz === moment.tz.guess()) {
+								// if the date hour is less than the offset
+								if (24 - dh <= Math.abs(dateoffset / 60)) {
+									// if the rrule byweekday WAS explicitly set , correct it
+									if (curEvent.rrule.origOptions.byweekday !== undefined) {
+										// apply the correction to the date/time back to right day
+										date = new Date(date.getTime() + Math.abs(24 * 60) * 60000);
+									}
+									// the duration was calculated way back at the top before we could correct the start time..
+									// fix it for this event entry
+									//duration = 24 * 60 * 60 * 1000;
+									Log.debug(`new recurring date2 fulldate is ${date}`);
+								}
+								//}
+							}
+						} else {
+							// not full day, but luxon can still screw up the date on the rule processing
+							// we need to correct the date to get back to the right event for
+							if (dateoffset < 0) {
+								// if the date hour is less than the offset
+								if (dh <= Math.abs(dateoffset / 60)) {
+									// if the rrule byweekday WAS explicitly set , correct it
+									if (curEvent.rrule.origOptions.byweekday !== undefined) {
+										// Reduce the time by t:
+										// Apply the correction to the date/time to get it UTC relative
+										date = new Date(date.getTime() - Math.abs(24 * 60) * 60000);
+									}
+									// the duration was calculated way back at the top before we could correct the start time..
+									// fix it for this event entry
+									//duration = 24 * 60 * 60 * 1000;
+									Log.debug(`new recurring date1 is ${date}`);
+								}
+							} else {
+								// if the timezones are the same, correct date if needed
+								//if (event.start.tz === moment.tz.guess()) {
+								// if the date hour is less than the offset
+								if (24 - dh <= Math.abs(dateoffset / 60)) {
+									// if the rrule byweekday WAS explicitly set , correct it
+									if (curEvent.rrule.origOptions.byweekday !== undefined) {
+										// apply the correction to the date/time back to right day
+										date = new Date(date.getTime() + Math.abs(24 * 60) * 60000);
+									}
+									// the duration was calculated way back at the top before we could correct the start time..
+									// fix it for this event entry
+									//duration = 24 * 60 * 60 * 1000;
+									Log.debug(`new recurring date2 is ${date}`);
+								}
+								//}
+							}
+						}
+						startDate = moment(date);
+						Log.debug(`Corrected startDate: ${startDate.toDate()}`);
+
+						let adjustDays = CalendarFetcherUtils.calculateTimezoneAdjustment(event, date);
 
 						// Remove the time information of each date by using its substring, using the following method:
 						// .toISOString().substring(0,10).
@@ -380,30 +411,30 @@ const CalendarFetcherUtils = {
 						if (curEvent.recurrences !== undefined && curEvent.recurrences[dateKey] !== undefined) {
 							// We found an override, so for this recurrence, use a potentially different title, start date, and duration.
 							curEvent = curEvent.recurrences[dateKey];
-							startMoment = moment(curEvent.start);
-							curDurationMs = curEvent.end.valueOf() - startMoment.valueOf();
+							startDate = moment(curEvent.start);
+							duration = parseInt(moment(curEvent.end).format("x")) - parseInt(startDate.format("x"));
 						}
 						// If there's no recurrence override, check for an exception date.  Exception dates represent exceptions to the rule.
 						else if (curEvent.exdate !== undefined && curEvent.exdate[dateKey] !== undefined) {
 							// This date is an exception date, which means we should skip it in the recurrence pattern.
 							showRecurrence = false;
 						}
-						Log.debug(`duration: ${curDurationMs}`);
+						Log.debug(`duration: ${duration}`);
 
-						endMoment = moment(startMoment.valueOf() + curDurationMs);
-						if (startMoment.valueOf() === endMoment.valueOf()) {
-							endMoment = endMoment.endOf("day");
+						endDate = moment(parseInt(startDate.format("x")) + duration, "x");
+						if (startDate.format("x") === endDate.format("x")) {
+							endDate = endDate.endOf("day");
 						}
 
 						const recurrenceTitle = CalendarFetcherUtils.getTitleFromEvent(curEvent);
 
 						// If this recurrence ends before the start of the date range, or starts after the end of the date range, don"t add
 						// it to the event list.
-						if (endMoment.isBefore(pastLocal) || startMoment.isAfter(futureLocal)) {
+						if (endDate.isBefore(past) || startDate.isAfter(future)) {
 							showRecurrence = false;
 						}
 
-						if (CalendarFetcherUtils.timeFilterApplies(now, endMoment, dateFilter)) {
+						if (CalendarFetcherUtils.timeFilterApplies(now, endDate, dateFilter)) {
 							showRecurrence = false;
 						}
 
@@ -411,8 +442,8 @@ const CalendarFetcherUtils = {
 							Log.debug(`saving event: ${description}`);
 							newEvents.push({
 								title: recurrenceTitle,
-								startDate: startMoment.format("x"),
-								endDate: endMoment.format("x"),
+								startDate: (adjustDays ? (adjustDays > 0 ? startDate.add(adjustDays, "hours") : startDate.subtract(Math.abs(adjustDays), "hours")) : startDate).format("x"),
+								endDate: (adjustDays ? (adjustDays > 0 ? endDate.add(adjustDays, "hours") : endDate.subtract(Math.abs(adjustDays), "hours")) : endDate).format("x"),
 								fullDayEvent: CalendarFetcherUtils.isFullDayEvent(event),
 								recurringEvent: true,
 								class: event.class,
@@ -430,47 +461,43 @@ const CalendarFetcherUtils = {
 					// Log.debug("full day event")
 
 					// if the start and end are the same, then make end the 'end of day' value (start is at 00:00:00)
-					if (fullDayEvent && startMoment.valueOf() === endMoment.valueOf()) {
-						endMoment = endMoment.endOf("day");
+					if (fullDayEvent && startDate.format("x") === endDate.format("x")) {
+						endDate = endDate.endOf("day");
 					}
 
 					if (config.includePastEvents) {
 						// Past event is too far in the past, so skip.
-						if (endMoment < pastLocalDate) {
+						if (endDate < past) {
 							return;
 						}
 					} else {
 						// It's not a fullday event, and it is in the past, so skip.
-						if (!fullDayEvent && endMoment < now) {
+						if (!fullDayEvent && endDate < new Date()) {
 							return;
 						}
 
 						// It's a fullday event, and it is before today, So skip.
-						if (fullDayEvent && endMoment <= todayLocal) {
+						if (fullDayEvent && endDate <= today) {
 							return;
 						}
 					}
 
 					// It exceeds the maximumNumberOfDays limit, so skip.
-					if (startMoment > futureLocalDate) {
+					if (startDate > future) {
 						return;
 					}
 
-					if (CalendarFetcherUtils.timeFilterApplies(now, endMoment, dateFilter)) {
+					if (CalendarFetcherUtils.timeFilterApplies(now, endDate, dateFilter)) {
 						return;
 					}
 
 					// get correction for date saving and dst change between now and then
-					let adjustHours = CalendarFetcherUtils.calculateTimezoneAdjustment(event, startMoment.toDate());
-					// This shouldn't happen
-					if (adjustHours) {
-						Log.warn(`Unexpected timezone adjustment of ${adjustHours} hours on non-recurring event`);
-					}
+					let adjustDays = CalendarFetcherUtils.calculateTimezoneAdjustment(event, startDate.toDate());
 					// Every thing is good. Add it to the list.
 					newEvents.push({
 						title: title,
-						startDate: startMoment.add(adjustHours, "hours").format("x"),
-						endDate: endMoment.add(adjustHours, "hours").format("x"),
+						startDate: (adjustDays ? (adjustDays > 0 ? startDate.add(adjustDays, "hours") : startDate.subtract(Math.abs(adjustDays), "hours")) : startDate).format("x"),
+						endDate: (adjustDays ? (adjustDays > 0 ? endDate.add(adjustDays, "hours") : endDate.subtract(Math.abs(adjustDays), "hours")) : endDate).format("x"),
 						fullDayEvent: fullDayEvent,
 						class: event.class,
 						location: location,
@@ -551,7 +578,7 @@ const CalendarFetcherUtils = {
 				increment = until[1].slice(-1) === "s" ? until[1] : `${until[1]}s`, // Massage the data for moment js
 				filterUntil = moment(endDate.format()).subtract(value, increment);
 
-			return now < filterUntil.toDate();
+			return now < filterUntil.format("x");
 		}
 
 		return false;

@@ -12,7 +12,7 @@ Module.register("updatenotification", {
 	suspended: false,
 	moduleList: {},
 	needRestart: false,
-	updates: [],
+	updates: {},
 
 	start () {
 		Log.info(`Starting module: ${this.name}`);
@@ -96,7 +96,7 @@ Module.register("updatenotification", {
 
 			const localRef = status.hash;
 			const remoteRef = status.tracking.replace(/.*\//, "");
-			return `<a href="https://github.com/MagicMirrorOrg/MagicMirror/compare/${localRef}...${remoteRef}" class="xsmall dimmed difflink" target="_blank">${text}</a>`;
+			return `<a href="https://github.com/MichMich/MagicMirror/compare/${localRef}...${remoteRef}" class="xsmall dimmed difflink" target="_blank">${text}</a>`;
 		});
 	},
 

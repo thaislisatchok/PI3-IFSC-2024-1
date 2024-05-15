@@ -47,14 +47,9 @@ module.exports = NodeHelper.create({
 		}
 
 		let fetcher;
-		let fetchIntervalCorrected;
 		if (typeof this.fetchers[identifier + url] === "undefined") {
-			if (fetchInterval < 60000) {
-				Log.warn(`fetchInterval for url ${url} must be >= 60000`);
-				fetchIntervalCorrected = 60000;
-			}
-			Log.log(`Create new calendarfetcher for url: ${url} - Interval: ${fetchIntervalCorrected || fetchInterval}`);
-			fetcher = new CalendarFetcher(url, fetchIntervalCorrected || fetchInterval, excludedEvents, maximumEntries, maximumNumberOfDays, auth, broadcastPastEvents, selfSignedCert);
+			Log.log(`Create new calendarfetcher for url: ${url} - Interval: ${fetchInterval}`);
+			fetcher = new CalendarFetcher(url, fetchInterval, excludedEvents, maximumEntries, maximumNumberOfDays, auth, broadcastPastEvents, selfSignedCert);
 
 			fetcher.onReceive((fetcher) => {
 				this.broadcastEvents(fetcher, identifier);

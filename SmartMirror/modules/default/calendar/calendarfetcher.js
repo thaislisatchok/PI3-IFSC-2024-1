@@ -1,4 +1,4 @@
-const https = require("node:https");
+const https = require("https");
 const ical = require("node-ical");
 const Log = require("logger");
 const NodeHelper = require("node_helper");
