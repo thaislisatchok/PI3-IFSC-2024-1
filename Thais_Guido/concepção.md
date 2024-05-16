@@ -35,7 +35,6 @@ Desenvolver um dispositivo inteligente que possa ser acoplado às bengalas tradi
 1. **Testes de Funcionalidade**:
 -  Realizar testes preliminares para verificar a precisão dos sensores e a eficácia do feedback fornecido.
 
-[Testes](./testes.md)
 
 2. **Interações e Ajustes**:
 -   Com base nos resultados dos testes, fazer ajustes na escolha dos sensores para definir o design e a funcionalidade do dispositivo para melhorar sua eficácia e usabilidade.
