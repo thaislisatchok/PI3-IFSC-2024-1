@@ -2,8 +2,6 @@
 
 Projeto de um dispositivo para auxilio de pessoas com visão debilitada
 
-
-
 Acesso rápido:
 
   - [Introdução](./README.md)
@@ -25,8 +23,22 @@ Desenvolver um dispositivo inteligente que possa ser acoplado às bengalas tradi
 
 ## Lista de possíveis componentes :
 
+| Componentes                          |Representação       |
+| -------------------------------------|------------------- |
+| Microcontrolador STM32F103C8         | ![stm32f103](https://ae01.alicdn.com/kf/Sd6e543a09d0648a8912329bc7725d665w.jpg_640x640Q90.jpg_.webp) |
+| Sensor Ultrassônico HC-SR04          | ![ultrassonico](https://cdn.awsli.com.br/600x700/78/78150/produto/2888532/62bc744cec.jpg) |
+| Motor 3V~6V                          | ![motor](https://cdn.awsli.com.br/380x380/468/468162/produto/1941431669db977161.jpg)      |        
+| Driver para o motor                  |                    |
+
 ## Testes :
 
+1. **Testes de Funcionalidade**:
+-  Realizar testes preliminares para verificar a precisão dos sensores e a eficácia do feedback fornecido.
+
+
+2. **Interações e Ajustes**:
+-   Com base nos resultados dos testes, fazer ajustes na escolha dos sensores para definir o design e a funcionalidade do dispositivo para melhorar sua eficácia e usabilidade.
+3. **
 1. **Testes de Funcionalidade**:
 -  Realizar testes preliminares para verificar a precisão dos sensores e a eficácia do feedback fornecido.
 2. **Interações e Ajustes**:
