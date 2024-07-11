@@ -1,5 +1,3 @@
-/* global NotificationFx */
-
 Module.register("alert", {
 	alerts: {},
 
