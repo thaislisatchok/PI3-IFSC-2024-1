@@ -59,11 +59,11 @@ Este dispositivo obtém esta funcionalidade utilizando uma hélice acoplada a um
 
 ![Circuito geral simplificado](./assets/circuito_geral_simplificado.svg)
 
+## Máquina de estados do processo
 
+Pensando em atender todas as necessidades do processo foi feita uma máquina de estados com a configuração abaixo.
 
 ![Fluxograma](./assets/fluxograma.svg)
-
-
 
 ## Materiais
 
