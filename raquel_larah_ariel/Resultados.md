@@ -17,6 +17,6 @@ Foi realizado o teste do sensor utilizando o valor de tensão que haviamos proje
 
 ## Teste de transferencia de temperatura
 Para o teste foi colocado 1 litro de água no becker externo e 500mL no interno. O ebulidor ficou no becker externo. Quando a temperatura da água no becker interno chegou a 60°C, a água no becker externo estava em 83°C.
-Esse processo levou em torno de 7 minutos. Após desligado o ebulidor ambas as temperaturas elas se igualaram.
+Esse processo levou em torno de 7 minutos. Após desligado o ebulidor ambas as temperaturas elas se igualaram em torno de 70°C.
 
 ## Teste do motor DC (3V 13100 RPM DC MOTOR)
