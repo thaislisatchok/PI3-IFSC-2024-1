@@ -65,6 +65,10 @@ Pensando em atender todas as necessidades do processo foi feita uma máquina de 
 
 ![Fluxograma](./assets/fluxograma.svg)
 
+## Display
+Simulação do display
+https://www.figma.com/proto/vzXWbpWkbP1SS4rhWi7TBW/Figma-basics?t=otWXFPbx3BhwNBE5-1
+
 ## Materiais
 
 - [x] 1 béquer de 500mL
