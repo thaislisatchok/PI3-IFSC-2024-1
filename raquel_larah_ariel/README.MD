@@ -64,7 +64,7 @@ Este dispositivo obtém esta funcionalidade utilizando uma hélice acoplada a um
 
 ![Fluxograma](./assets/fluxograma.svg)
 
-> Pensando em atender todas as necessidades do processo foi feita uma máquina de estados com a configuração abaixo.
+Pensando em atender todas as necessidades do processo foi feita uma máquina de estados com a configuração abaixo.
 
 ## Materiais
 
