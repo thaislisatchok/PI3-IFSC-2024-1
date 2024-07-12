@@ -59,6 +59,8 @@ Este dispositivo obtém esta funcionalidade utilizando uma hélice acoplada a um
 
 ![Circuito geral simplificado](./assets/circuito_geral_simplificado.png)
 
+![Circuito geral simplificado](./assets/fluxograma.svg)
+
 ## Materiais
 
 - [x] 1 béquer de 500mL
