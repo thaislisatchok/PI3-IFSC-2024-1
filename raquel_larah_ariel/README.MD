@@ -57,9 +57,13 @@ Este dispositivo obtém esta funcionalidade utilizando uma hélice acoplada a um
 
 ## Visão geral
 
-![Circuito geral simplificado](./assets/circuito_geral_simplificado.png)
+![Circuito geral simplificado](./assets/circuito_geral_simplificado.svg)
 
-![Circuito geral simplificado](./assets/fluxograma.svg)
+
+
+![Fluxograma](./assets/fluxograma.svg)
+
+
 
 ## Materiais
 
@@ -67,17 +71,13 @@ Este dispositivo obtém esta funcionalidade utilizando uma hélice acoplada a um
 - [x] 1 béquer de 2L
 - [ ] 1 Haste (20 cm de altura)
 - [ ] 1 hélice (6 cm diametro, 2cm de altura)
-- Componentes eletrônicos
-- [ ] 1 ebulidor 750 W ?
-- [ ] Relé
-- Conversor CA/CC (algum parecido com):
-    - [ ] ECE10US03
-    - [ ] IRM-10-3.3
-    - [ ] HLK-10-03
-    - [ ] HLK-10-05
-- [ ] Regulador linear 3,3 V
+- [x] 1 ebulidor 750 W
+- [ ] 1 Relé + acionamento
+- [ ] 1 Conversor CA/CC 5V 20W (HLK-20M5)
+- [ ] 1 Conversor CA/CC 24 05W (HLK-5M24)
 - [x] 1 motor DC (3V 13100 RPM DC MOTOR) 
-- [x] 1 sensor de temperatura (DS18B20 )
+- [x] 1 sensor de temperatura (DS18B20)
+- [x] 1 display 16x2 (5LC01)
 
 ## Referências
 
