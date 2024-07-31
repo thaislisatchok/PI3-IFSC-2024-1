@@ -44,6 +44,7 @@ Figura 1 - Diagrama do hardware
 <p> UControlador: F280025C da Texas Instruments, um microcontrolador que aguenta o sistema de controle que será aplicado futuramente </p>
 <p> Sensor de corrente: ACS758 150B, o máximo de corrente que o sensor terá que medir é de 80A, o sensor escolhido mede até 150A e tem disponivel no laboratório </p>
 <p> Conversor CC/CC 48V - 5V: THL15-4811WL, robusto suficiente para aguentar os picos de tensão (até 60V) e tem disponivel no laboratório </p>
+<p> Conversor CC/CC 48V - 12V: EC5SBW-48S12, robusto suficiente para aguentar os picos de tensão (até 60V) e tem disponivel no laboratório </p>
 <p> Sensor de temperatura: NTC 33950 100k, o sensor deve medir pelo menos de 10 C até 200 C, o sensor escolhido mede de -4 a 270 C </p>
 <p> Amplificador Opercional: TLV 9044 DIR, escolhido pela disponibilidade no laboratório </p>
 <p> Regulador de Tensão: LM 1117 </p>
@@ -54,6 +55,19 @@ Figura 1 - Diagrama do hardware
 
 #### Leitura da tensão 
 <p> Para a leitura da Tensão foi usado um divisor resistivo de tensão juntamente com um filtro Sallen-Key de segunda ordem (passa-baixa) para a diminuição de ruido na leitura do sinal</p>
+
 ### Esquemático 
+<p>Através do software KiCad e com os requisitos levantados anteriormente foi realizado a implementação do esquemático (pdf com o esquemático completo na pasta do projeto), que é composto por 5 Blocos principais: </p>
+<p> - Alimentação: O bloco de alimentação é formado pela conexão da Bateria de 12S (aproximadamente 48V) e a conexão do Gerador Elétrico</p>
+<p> - Potência: Possui dois conversores THL15-4811WL (para 5V) e o EC5SBW-48S12 (para 12V), com o circuito sugerido na folha de dados</p>
+<p> - Conexões: São as conexões que a placa possui com o meio esterno, primeramente o 4 conectores XT60 que são usados para a conectar a carga (para testes inicias uma carga resistiva), 3 conectores JST-XH de duas vias, um para a alimentação da bomba que auxilia no resfriamento o motor, outro para aferir a temperatura e por último para a ignição do motor, 6 conectores JST-XH de 3 vias sendo, para o esc que vai acionar o BLDC para dar a partida no motor a combustão, para o servo motor que auxilia no controle, um que recebe um pulso da controladora de voo para o acionamento remoto do motor, e dois reservas caso venha a precisar no futuro, alem desses conectores temos nesse bloco um optacoplador para proteção do circuito com o sinal que vem do tacomêtro, um jumper para a alimentação do F280025C caso precise debugar o circuito no computador, um modulo para leitura do cartão SD e dois leds para informações. Para a comunicação com a controladora de voo foi prevista duas conexões, uma por JST-XH  e uma por JST-GH, para conseguir utilizar os dois tipos de controlaora disponiveis no laboratório (cube orange e pixhalk)</p>
+<p> - Condicionamento do Sinal: Contendo dois sinais que precisam ser ajustados para a leitura no F280025C a tensão que passa por um divisor resistivo para diminuir a tensão, um buffer e um filtro Sallen-Key e a corrente que após passar por um sensor de efeito hall (ACS758) passa por um buffer, um circuito somador para amplificar a tensão fornecida pelo sensor e um filtro sallen-key, o detalhemento desses dois circuitos está fornecido na folha de calculos.</p>
+<p></p>
 ### Layout
+<p>O layout seguiu os seguintes requisitos:</p>
+  <p>- Deixar todos os componentes na parte superior da placa assim como os pontos de medição de tensão</p>
+  <p>- A parte de potência separada e com menor interatividade com o resto da placa</p>
+  <p>- Conectores na borda da placa </p>
+  <p>- Malha de potência no barramento (no bloco de alimentação) </p>
+  <p>Os requisitos foram pensados para evitar ruídos indesejados, evitar que a placa sobreaqueça, melhor conexão dos perifericos e para que acaso haja algum problema no futuro seja fácil de encontrar o que está gerando.</p>
 ### Programação
