@@ -51,10 +51,29 @@ Figura 1 - Diagrama do hardware
 
 ### Projeto
 <p align="justify"> O projeto foi realizado de acordo com diagrama de blocos demonstrado anteriormente</p>
+
 #### Leitura da corrente
 
+<p align="justify">O circuito utilizado para a leitura da corrento envolve o sensor (ACS 758B), o condicionamento de sinal e um filtro ativo passa-baixa (Sallen-Key). Para a adequar os niveis de tensão foi utilizado um circuito subtrator, descrito abaixo </p>
+
+<picture>
+ <img alt="circuito para aferir a corrente" src="img/amplificador-subtrator-com-ampop.png">
+</picture>
+
+<p align="justify">Para a tensão V1 maxima, levamos em consideração que quando a corrente é nula a tensão de saída do ACS vai ser Vcc/2 = 1.65.</p>
+<p align="justify">Para a tensão V1 minima, levamos em consideração que quando a corrente é maxima a tensão de saída do ACS vai ser (Vcc/2) + (Corrente maxima * sensibilidade do sensor), a sensibilidade do sensor pelo datasheet é 13*10^-3 e a corrente  maxima prevista é 100 A (com uma certa sobra por precaução), com isso temos V2 = 2.95 </p>
+<p align="justify">Para V2 é utilizado um divisor resistivo para conseguir a tensão de 1.5V (R1 = 1.2k ohm e R2=1k ohm).  </p>
+
+<picture>
+ <img alt="circuito para aferir a corrente" src="img/corrente.png">
+</picture>
+
 #### Leitura da tensão 
-<p align="justify"> Para a leitura da Tensão foi usado um divisor resistivo de tensão juntamente com um filtro Sallen-Key de segunda ordem (passa-baixa) para a diminuição de ruido na leitura do sinal</p>
+<p align="justify"> Para a leitura da Tensão foi usado um divisor resistivo de tensão juntamente com um filtro Sallen-Key de segunda ordem (passa-baixa) para a diminuição de ruido na leitura do sinal. Para calcular o divisor resistivo foi assumindo que R1 = 56560 ohm (dividido em dois resistores um de 56k ohm e outro e 560 ohm), R2=3k3 ohm e com uma tensão maxima de 60V. Para o calculo do filtro Sallen-Key, foi previsto pelos professores do laboratori de dornes uma frequência de corte de 723 Hz para o filtro, para a definição dos capacitores e resistores foi utilizada a formula fc = 1/(2*pi*sqrt(R1*C1*R2*C2)) onde ao definir C1 e C2 com 100 nF, temos R1 e R2 de 2k2 ohm. O esquemático é mostrado na figura abaixo. </p>
+
+<picture>
+ <img alt="circuito para aferir a tensão" src="img/tensão.png">
+</picture>
 
 ### Esquemático 
 <p align="justify">Através do software KiCad e com os requisitos levantados anteriormente foi realizado a implementação do esquemático (pdf com o esquemático completo na pasta do projeto), que é composto por 5 Blocos principais: </p>
