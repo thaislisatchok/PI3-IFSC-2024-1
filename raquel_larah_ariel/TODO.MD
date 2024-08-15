@@ -1,0 +1,18 @@
+- [ ] Ver o preoblema do display
+- [ ] Ponte H
+  - Simulação
+  - Bancada
+- [ ] Fonte de corrente
+  - Simulação
+  - Bancada
+- [ ] Como vamos amostrar a corrrente
+  -  Shunt
+- [ ] Relé e acionamento
+  - Bancada
+- [ ] continuar o software
+- [ ] Haste
+- [ ] Motor e acionamento
+- [ ] Partes Fisicas
+  - [ ] T-Block
+  - [ ] Pinos
+  - [ ] Disposição dos compontentes
