@@ -254,7 +254,7 @@ let config = {
 				type: "current",
 				location: "Florianópolis",
 				locationID: "3463237", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz;
-				apiKey: "3892217fdda3dac276b2a4919e818839"
+				apiKey: "API_KEY"
 			}
 		},
 		// ******************************************* forecast module ********************************************
@@ -267,7 +267,7 @@ let config = {
 				type: "forecast",
 				location: "Florianópolis",
 				locationID: "3463237", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz;
-				apiKey: "3892217fdda3dac276b2a4919e818839"
+				apiKey: "API_KEY"
 			}
 		},
 		// ******************************************* newsfeed module ********************************************
