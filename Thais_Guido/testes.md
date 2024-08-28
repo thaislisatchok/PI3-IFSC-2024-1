@@ -2,7 +2,7 @@
 
 Projeto de um dispositivo para auxilio de pessoas com visão debilitada
 
-# Testes
+# Testes 
 
 A fase inicial de testes do protótipo é crucial para validar o funcionamento dos componentes e garantir que o dispositivo atende às expectativas em termos de desempenho, confiabilidade e usabilidade. Esta fase envolve tanto testes individuais dos componentes quanto testes integrados, onde todas as partes do sistema operam conjuntamente. Após a conclusão dessa fase, uma série de resultados e insights foram obtidos, permitindo avaliar o desempenho dos componentes individuais, a integração do sistema e a usabilidade geral do dispositivo.
 
@@ -16,7 +16,7 @@ O funcionamento do HC-SR04 é relativamente simples e direto. O módulo emite um
 
 * **Procedimento de Operação**:
 
-De acordo com a folha de dados do HC-SR04, o seguinte procedimento deve ser seguido para obter medições precisas:
+De acordo com a folha de dados do HC-SR04, o seguinte procedimento foi seguido para obter medições precisas:
 
 >* **Ativação do Sinal Trig:** O pino Trig deve ser mantido em nível ALTO (HIGH) por pelo menos 10 microsegundos (us). Esse comando inicia o processo de medição.
 
@@ -34,7 +34,11 @@ De acordo com a folha de dados do HC-SR04, o seguinte procedimento deve ser segu
 
 
 
->* *Tempo de espera:** Após cada medição, é recomendável aguardar pelo menos 60 ms antes de iniciar a próxima operação. Isso garante que o módulo esteja pronto para a próxima medição sem interferências ou erros.
+>* **Tempo de espera:** Após cada medição, é recomendável aguardar pelo menos 60 ms antes de iniciar a próxima operação. Isso garante que o módulo esteja pronto para a próxima medição sem interferências ou erros.
+
+- **Desempenho nos Testes Práticos:**
+
+Durante os testes, o HC-SR04 demonstrou um desempenho confiável em diversas condições. Em ambientes fechados, o sensor forneceu medições consistentes e precisas, mesmo com superfícies de diferentes materiais e texturas. Em ambientes abertos, o sensor manteve sua precisão, embora superfícies muito reflexivas ou absorventes pudessem alterar levemente as medições, o que é uma característica conhecida desse tipo de sensor.
 
 
 
