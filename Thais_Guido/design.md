@@ -74,8 +74,6 @@ O processo de integração envolveu a criação de uma estrutura projetada para 
 
 Abaixo, são apresentadas imagens da case, incluindo o processo de montagem e a integração final com a Placa de Circuito Impresso. Estas imagens ilustram como o circuito foi inserido na case e como a solução em papel contribui para a funcionalidade e a estética final do dispositivo.
 
-![Case](
+![Case](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/case1.jpeg)
 
-![Case](
-
-![Case](
+![Case](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/case2.jpeg)
