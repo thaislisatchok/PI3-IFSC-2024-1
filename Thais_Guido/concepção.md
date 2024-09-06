@@ -55,8 +55,4 @@ A partir dos insights obtidos durante a pesquisa inicial e o estudo de casos, fo
 | Driver para o motor                  | ![driver](https://rukminim2.flixcart.com/image/416/416/k44hksw0/transistor/p/r/n/20-pics-2n2222-npn-transistor-sme-original-imafn327jjweqgzf.jpeg?q=70&crop=false)|
 | Regulador de tensão                  | ![regulador](https://www.ryndackcomponentes.com.br/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/i/m/image_5423.jpg)| 
 
-## Testes :
-
-[Testes](./testes.md)
-
 

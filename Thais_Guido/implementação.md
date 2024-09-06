@@ -14,7 +14,7 @@ Nesta seção, detalharemos a implementação do sistema desenvolvido para melho
 
 Inicialmente, a fase de testes do protótipo foi fundamental para validar o funcionamento dos componentes e garantir que o dispositivo atende às expectativas em termos de desempenho, confiabilidade e usabilidade. Essa fase incluiu testes tanto dos sensores ultrassônicos HC-SR04 quanto do motor vibratório, permitindo avaliar o desempenho individual dos componentes, a integração do sistema e a usabilidade geral do dispositivo.
 
-1. **Sensores Ultrassônicos HC-SR04:** 
+**1.Sensores Ultrassônicos HC-SR04:** 
 
 Cada sensor ultrassônico foi testado separadamente para verificar sua precisão na detecção de obstáculos. Os testes incluíram medir a distância mínima e máxima que cada sensor pode detectar com precisão e garantir que os sinais de eco fossem recebidos e processados corretamente pelo microcontrolador.
 
@@ -52,7 +52,7 @@ No funcionamento do módulo HC-SR04, o processo de medição de distância envol
 
 Durante os testes, o HC-SR04 demonstrou um desempenho confiável em diversas condições. Em ambientes fechados, o sensor forneceu medições consistentes e precisas, mesmo com superfícies de diferentes materiais e texturas. Em ambientes abertos, o sensor manteve sua precisão, embora superfícies muito reflexivas ou absorventes pudessem alterar levemente as medições, o que é uma característica conhecida desse tipo de sensor.
 
-2. **Microcontrolador STM32F103C8:**
+**2.Microcontrolador STM32F103C8:**
 
 Os testes iniciais do microcontrolador STM32F103C8 incluíram diversas etapas para garantir o correto funcionamento do sistema. Inicialmente, verificou-se se o microcontrolador estava recebendo e processando adequadamente os sinais dos sensores ultrassônicos. Isso envolveu a implementação de rotinas básicas para a leitura dos dados dos sensores e a verificação dos sinais recebidos através de portas de entrada/saída (I/O). Além disso, foram realizados testes para assegurar que os algoritmos de detecção e controle, que são responsáveis por processar as informações dos sensores e tomar decisões, estavam funcionando conforme o esperado. Isso incluiu a programação de interrupções e timers para lidar com as medições dos sensores em tempo real.
 Os testes também garantiram que o microcontrolador pudesse ativar o feedback tátil (motor vibratório) com precisão e no momento certo, com base nas informações dos sensores. O microcontrolador foi configurado para processar os dados dos sensores e gerar sinais de controle que acionam o motor vibratório, fornecendo feedback ao usuário sobre a proximidade dos obstáculos.
@@ -61,9 +61,13 @@ Além disso, foram testadas a comunicação entre o microcontrolador e outros co
 
 Os testes iniciais ajudaram a validar a capacidade do STM32F103C8 em gerenciar as tarefas do sistema e a garantir a precisão e confiabilidade do protótipo, resultando em um dispositivo funcional e eficiente para a detecção de obstáculos e feedback tátil.
 
-3. **Motor Vibratório:** 
+**3.Motor Vibratório:** 
 
 O motor vibratório foi testado para assegurar que ele respondesse corretamente aos comandos enviados pelo microcontrolador STM32F103C8 através do código programado no STM32CubeIDE. Durante os testes, verificou-se que o motor fornecia diferentes níveis de vibração conforme os comandos recebidos, permitindo que a intensidade e a duração da vibração fossem ajustadas de acordo com a proximidade dos obstáculos detectados pelos sensores ultrassônicos.
 Foi realizada uma calibração detalhada para garantir que a vibração fosse perceptível ao usuário, mas não causasse desconforto. Isso envolveu ajustar o PWM (Pulse Width Modulation) gerado pelo microcontrolador. O PWM foi configurado utilizando um canal de timer no STM32F103C8, onde a largura do duty cycle foi ajustada para controlar a intensidade da vibração do motor. O duty cycle determina a proporção de tempo em que o sinal de controle está em nível ALTO durante cada ciclo de PWM, afetando diretamente a força da vibração.
 
 O funcionamento do motor vibratório foi monitorado para garantir que o sinal PWM do microcontrolador fosse aplicado corretamente e que a resposta do motor fosse consistente e conforme o esperado. Os testes incluíram a verificação da resposta do motor a diferentes duty cycles e a análise de como essas variações influenciam a sensação de vibração para o usuário. Este processo garantiu que o motor vibratório fornecesse feedback tátil adequado, melhorando a eficácia do dispositivo como um todo.
+
+# Implementação do sistema
+
+**1.Configuração Geral:**
