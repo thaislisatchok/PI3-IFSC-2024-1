@@ -9,21 +9,11 @@ Acesso rápido:
   - [Design/Projeto](./design.md)
   - [Implementação](./implementação.md)
 
-# Operação 
+# Operação
 
-O dispositivo, em sua fase de protótipo, foi testado permitindo uma avaliação realista de sua funcionalidade. Os testes realizados confirmaram que o protótipo atinge o principal objetivo de melhorar a mobilidade e segurança dos usuários, permitindo a detecção eficiente de obstáculos próximos e fornecendo um feedback claro por meio de vibrações. No entanto, apesar de seu desempenho satisfatório no quesito mobilidade, o protótipo ainda depende de uma fonte de bancada para alimentação, o que limita seu uso contínuo. Essa limitação energética é um ponto crucial que será abordado em futuras otimizações, tanto em relação ao tipo de alimentação quanto à sua autonomia. A seguir, detalhamos as considerações e os testes realizados.
-
-**1. Prototipagem e Tamanho**
-
-Como o dispositivo está em uma fase inicial de desenvolvimento, o tamanho do protótipo ainda não foi otimizado. Embora funcional, ele ocupa mais espaço do que o ideal para um dispositivo que deve ser compacto e discreto, especialmente quando acoplado à bengala do usuário. Em versões futuras, a miniaturização dos componentes eletrônicos será uma prioridade, visando tornar o dispositivo leve e ergonômico, sem comprometer o conforto do usuário durante o uso diário.
-
-
-Aqui está o texto completo para a seção Operação:
-
-Operação
 O dispositivo, em sua fase de protótipo, foi testado com a comunidade de pessoas com deficiência visual, permitindo uma avaliação realista de sua funcionalidade. Os testes realizados confirmaram que o protótipo atinge o principal objetivo de melhorar a mobilidade e segurança dos usuários, permitindo a detecção eficiente de obstáculos próximos e fornecendo um feedback claro por meio de vibrações. No entanto, apesar de seu desempenho satisfatório no quesito mobilidade, o protótipo ainda depende de uma fonte de bancada para alimentação, o que limita seu uso contínuo. Essa limitação energética é um ponto crucial que será abordado em futuras otimizações, tanto em relação ao tipo de alimentação quanto à sua autonomia. A seguir, detalhamos as considerações e os testes realizados.
 
-1. Prototipagem e Tamanho
+**1. Prototipagem e Tamanho**
 Como o dispositivo está em uma fase inicial de desenvolvimento, o tamanho do protótipo ainda não foi otimizado. Embora funcional, ele ocupa mais espaço do que o ideal para um dispositivo que deve ser compacto e discreto, especialmente quando acoplado à bengala do usuário. Em versões futuras, a miniaturização dos componentes eletrônicos será uma prioridade, visando tornar o dispositivo leve e ergonômico, sem comprometer o conforto do usuário durante o uso diário.
 
 **2. Uso de Componentes Simples no Protótipo**
