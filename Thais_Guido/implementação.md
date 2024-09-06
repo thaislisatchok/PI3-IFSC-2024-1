@@ -70,4 +70,100 @@ O funcionamento do motor vibratório foi monitorado para garantir que o sinal PW
 
 # Implementação do sistema
 
-**1.Configuração Geral:**
+**1. Configuração de Portas e Clocks**
+
+Configuração Geral:
+
+- **Portas GPIO:**
+
+>* As portas GPIO são configuradas para controlar o pino de trigger (envio de sinal) do sensor ultrassônico e para capturar o sinal de eco (resposta do sensor após bater em um obstáculo).
+
+>* Um pino do microcontrolador é configurado como saída para enviar o sinal de trigger para o sensor. Outro pino é configurado como entrada para captar o sinal de eco do sensor.
+
+- **Clocks:**
+
+>* O clock do sistema (SystemCoreClock) é configurado para garantir o funcionamento adequado dos timers e da lógica de contagem, necessária para medir a distância baseada no tempo de voo do pulso ultrassônico.
+
+**2. Uso de Timers**
+
+Timer para Captura de Entrada (Input Capture)
+
+- **Timer de Input Capture:**
+
+>* É configurado um timer (por exemplo, TIM2) para capturar o tempo de subida e descida do sinal de eco do sensor ultrassônico.
+
+>* A captura do tempo de subida do pulso (quando o sinal de eco é detectado) e do tempo de descida (quando o sinal termina) permite calcular a duração do pulso de eco, que é diretamente relacionada à distância.
+
+- **Prescaler e Período:**
+
+>* O prescaler e o período do timer são configurados para ajustar a contagem do timer para que seja possível medir distâncias com precisão. O prescaler ajusta a frequência de contagem do timer para que ela seja adequada à resolução desejada.
+
+Configuração do Timer no Código (sensor.c)
+
+>* O timer é iniciado para capturar o tempo de subida (configurado para detectar a borda de subida do sinal).
+
+>* Quando o sinal de eco é detectado, o timer é ajustado para capturar o tempo de descida do sinal (borda de descida).
+
+>* O tempo capturado na subida e na descida do sinal é usado para calcular a distância.
+
+**3. Interrupções**
+
+Interrupção por Input Capture
+
+- **Configuração:** 
+
+>* O sistema é configurado para gerar uma interrupção quando o timer detecta uma borda de subida ou descida no sinal de eco.
+
+>* A função de callback associada ao timer (HAL_TIM_IC_CaptureCallback) é chamada para processar o evento de captura.
+
+Uso no Código
+
+>* No código, a função sr04_read_distance utiliza essa interrupção para calcular a distância. Quando a borda de subida é capturada, o timer começa a contar. Quando a borda de descida é capturada, o tempo total é calculado e convertido em distância.
+
+** 4. Controle do Motor Vibratório **
+
+PWM (Pulse Width Modulation)
+
+- **Configuração:**
+
+>* O controle da velocidade do motor vibratório é feito utilizando PWM, onde a largura do pulso (duty cycle) é ajustada para controlar a intensidade da vibração.
+
+>* Um canal do timer é configurado em modo PWM, e o sinal PWM gerado é aplicado ao motor.
+
+Função de Controle (motor.c)
+
+>* A função motor_speed define a velocidade do motor ajustando o valor do registrador CCR1 do timer, que controla a largura do pulso do sinal PWM.
+
+- **Ajuste da Vibração:**
+
+>* A função motor_pulse ajusta a intensidade e a frequência da vibração do motor conforme a distância medida pelo sensor. Quanto mais próximo o obstáculo, mais intensa e frequente a vibração.
+
+**5. Cálculo da Distância**
+
+- **Fórmula:**
+
+>* A distância é calculada usando a fórmula: distância = (tempo de eco * velocidade do som) / 2, onde o tempo de eco é obtido pela diferença entre os tempos de subida e descida capturados pelo timer.
+
+- **Limitação da Distância:**
+
+>* Se a distância calculada exceder um valor limite (DISTANCE_LIMIT), o valor da distância anterior é mantido para evitar leituras erradas.
+
+**6. Resumo do Funcionamento**
+
+- **Inicialização:**
+
+>* O sistema inicia os timers e configura as interrupções. O sensor ultrassônico é ativado periodicamente para medir a distância.
+
+- **Medida da Distância:**
+
+>* O microcontrolador envia um pulso de trigger ao sensor, que emite um pulso ultrassônico. O tempo de voo do pulso é capturado e convertido em distância.
+
+- **Controle do Motor:**
+
+
+>* Com base na distância medida, o sistema ajusta a velocidade e a frequência do motor vibratório, proporcionando feedback tátil ao usuário.
+
+
+#### Código Final
+
+Para acessar o meu código [**Clique aqui**](./codigo.md/Codigo_final)
