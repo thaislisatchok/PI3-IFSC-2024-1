@@ -46,7 +46,7 @@ ou
 
 No funcionamento do módulo HC-SR04, o processo de medição de distância envolve a emissão de pulsos ultrassônicos e a detecção de seu retorno. Quando o pino Trig é mantido em nível ALTO por pelo menos 10 microsegundos (µs), o módulo inicia a emissão de um pulso ultrassônico. Esse pulso é gerado em 8 ciclos de ondas ultrassônicas com uma frequência de 40 kHz. Esses 8 ciclos formam o pulso ultrassônico que viaja pelo ar e reflete em obstáculos. O tempo total que o pulso leva para retornar ao módulo é detectado pelo pino Echo, que gera um pulso ALTO cuja largura é proporcional ao tempo de ida e volta do sinal. Assim, a distância é calculada conforme a fórmula citada anteriormente. Para uma compreensão mais clara do funcionamento, consulte a ilustração abaixo, que demonstra detalhadamente o processo de emissão dos 8 ciclos de pulso ultrassônico e a medição do tempo de retorno.
 
-![Pulso](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/pulso.jpeg)
+![Pulso](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/pulso.png)
 
 ### **Desempenho nos Testes Práticos**
 
