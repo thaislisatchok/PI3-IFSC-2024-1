@@ -50,3 +50,9 @@ O feedback dos usuários foi essencial para ajustar a sensibilidade dos sensores
 
 O protótipo atual atingiu os objetivos principais de detecção de obstáculos e melhoria da mobilidade para pessoas com deficiência visual, proporcionando um aumento na segurança ao caminhar em diversos tipos de ambiente. No entanto, devido à dependência de uma fonte de bancada e à falta de uma solução portátil de alimentação, o tempo de operação está limitado. O próximo passo será otimizar a alimentação por bateria e melhorar os componentes para garantir um dispositivo que seja prático, eficiente e durável em seu uso cotidiano.
 
+# Link do vídeo de funcionamento
+
+- https://youtube.com/shorts/w_E45D01ZII?feature=share
+
+- https://youtube.com/shorts/UgbAGNQyC98?feature=share
+
