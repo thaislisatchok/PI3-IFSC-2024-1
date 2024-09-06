@@ -13,7 +13,7 @@ Acesso rápido:
 
 O desenvolvimento do dispositivo seguiu um processo metódico e estruturado, visando garantir a funcionalidade, a integração eficaz dos componentes e a adaptação ao uso prático. O design do dispositivo foi abordado em várias etapas, desde a montagem inicial do circuito em uma protoboard até a finalização em uma placa de circuito impresso e a inserção em uma case protetora. A seguir, detalhamos cada etapa desse processo de design:
 
-1. Montagem Inicial do Circuito
+**1. Montagem Inicial do Circuito na protoboard**
 
 Na fase inicial, a montagem do circuito foi feita em uma protoboard para realizar testes e ajustes preliminares. Esta etapa permitiu a validação dos componentes e a configuração do sistema. O processo incluiu os seguintes testes:
 
@@ -34,3 +34,12 @@ Na fase inicial, a montagem do circuito foi feita em uma protoboard para realiza
 >* **Implementação Inicial:** Começamos integrando um sensor ultrassônico com o motor vibratório, avaliando como o motor respondia às distâncias medidas pelo sensor.
 
 >* **Integração Completa:** Posteriormente, integramos os três sensores ultrassônicos com o motor vibratório. O sistema foi ajustado para que o motor vibrasse com base na menor distância detectada entre os sensores, indicando o obstáculo mais próximo e permitindo uma resposta tátil precisa para o usuário.
+
+Abaixo, é possível visualizar imagens do circuito montado na protoboard, ilustrando a configuração inicial e os testes realizados.
+
+![Protoboard](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/protoboard1.jpeg)
+
+![Protoboard](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/protoboard2.jpeg)
+
+![Protoboard](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/protoboard3.jpeg)
+
