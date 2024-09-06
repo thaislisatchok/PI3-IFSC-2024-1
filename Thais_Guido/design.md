@@ -43,3 +43,39 @@ Abaixo, é possível visualizar imagens do circuito montado na protoboard, ilust
 
 ![Protoboard](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/protoboard3.jpeg)
 
+**2. Desenvolvimento da Placa de Circuito Impresso (PCI)**
+
+Após a validação e ajuste do circuito na protoboard, o próximo passo essencial foi o desenvolvimento da Placa de Circuito Impresso (PCI). Este processo envolveu a criação de uma placa personalizada para montar os componentes eletrônicos de forma organizada e robusta. O desenvolvimento da PCI trouxe várias vantagens significativas em relação à protoboard. A PCI oferece uma base sólida e durável, essencial para a confiabilidade e longevidade do dispositivo, reduzindo o risco de falhas e desconexões típicas das conexões temporárias. Além disso, a PCI possibilita uma disposição compacta e organizada dos componentes eletrônicos, resultando em um design mais limpo e eficiente que facilita a integração dos sensores ultrassônicos, microcontrolador e motor vibratório. A disposição otimizada das trilhas na PCI minimiza interferências eletromagnéticas e melhora o desempenho geral do circuito. Por fim, a PCI simplifica a montagem e manutenção do dispositivo, com componentes fixos e claramente identificáveis, tornando o processo de ajuste e reparo mais ágil e preciso.
+
+Para o design da PCI, utilizamos o software KiCad, uma ferramenta poderosa e versátil para criação de circuitos impressos. O KiCad permitiu a elaboração detalhada do esquemático e a criação do layout da placa, assegurando que todos os componentes fossem posicionados e conectados de maneira eficiente. O software facilitou a visualização e a verificação do circuito antes da fabricação, garantindo que o projeto atendesse a todas as especificações e requisitos necessários. Abaixo, é possível visualizar o esquemático e o layout da PCI, além do passo a passo da fabricação da placa, desde o design até a montagem final.
+
+![KICAD](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/KICAD1.jpeg)
+
+![KICAD](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/KICAD2.jpeg)
+
+![KICAD](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/KICAD3.jpeg)
+
+![PCI](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/PCI1.jpeg)
+
+![PCI](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/PCI2.jpeg)
+
+![PCI](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/PCI3.jpeg)
+
+![PCI](https://github.com/thaislisatchok/PI3-IFSC-2024-1/blob/main/Thais_Guido/imagens.md/PCI4.jpeg)
+
+
+**3.Integração na Case**
+
+Após a conclusão da Placa de Circuito Impresso (PCI), a próxima etapa crucial foi a integração do circuito na case protetora. Para esta fase, optou-se por utilizar um material leve e prático: o papel número 30. Esta escolha não só assegura um design leve e funcional, mas também é uma solução econômica e eficiente para a montagem do dispositivo.
+
+O papel foi selecionado por sua combinação de leveza e resistência, características essenciais para garantir que o dispositivo se mantenha firme e estável quando acoplado à bengala, sem adicionar peso significativo. Além disso, o material oferece uma boa capacidade de personalização, permitindo que a case seja moldada e adaptada às dimensões e características específicas do circuito e dos componentes.
+
+O processo de integração envolveu a criação de uma estrutura projetada para acomodar a PCI de maneira segura e organizada. A case foi projetada para proteger o circuito contra impactos e condições ambientais adversas, além de garantir que todos os sensores e o motor vibratório estejam posicionados de forma eficaz para o seu funcionamento adequado.
+
+Abaixo, são apresentadas imagens da case, incluindo o processo de montagem e a integração final com a Placa de Circuito Impresso. Estas imagens ilustram como o circuito foi inserido na case e como a solução em papel contribui para a funcionalidade e a estética final do dispositivo.
+
+![Case](
+
+![Case](
+
+![Case](
