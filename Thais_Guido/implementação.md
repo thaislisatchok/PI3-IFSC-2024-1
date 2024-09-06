@@ -61,6 +61,10 @@ Além disso, foram testadas a comunicação entre o microcontrolador e outros co
 
 Os testes iniciais ajudaram a validar a capacidade do STM32F103C8 em gerenciar as tarefas do sistema e a garantir a precisão e confiabilidade do protótipo, resultando em um dispositivo funcional e eficiente para a detecção de obstáculos e feedback tátil.
 
+## Vídeo teste protoboard 
+
+- https://youtube.com/shorts/QIbxkw4j6M4?feature=share
+
 **3.Motor Vibratório:** 
 
 O motor vibratório foi testado para assegurar que ele respondesse corretamente aos comandos enviados pelo microcontrolador STM32F103C8 através do código programado no STM32CubeIDE. Durante os testes, verificou-se que o motor fornecia diferentes níveis de vibração conforme os comandos recebidos, permitindo que a intensidade e a duração da vibração fossem ajustadas de acordo com a proximidade dos obstáculos detectados pelos sensores ultrassônicos.
@@ -120,7 +124,7 @@ Uso no Código
 
 >* No código, a função sr04_read_distance utiliza essa interrupção para calcular a distância. Quando a borda de subida é capturada, o timer começa a contar. Quando a borda de descida é capturada, o tempo total é calculado e convertido em distância.
 
-** 4. Controle do Motor Vibratório **
+** 4. Controle do Motor Vibratório**
 
 PWM (Pulse Width Modulation)
 
