@@ -61,16 +61,16 @@ Além disso, foram testadas a comunicação entre o microcontrolador e outros co
 
 Os testes iniciais ajudaram a validar a capacidade do STM32F103C8 em gerenciar as tarefas do sistema e a garantir a precisão e confiabilidade do protótipo, resultando em um dispositivo funcional e eficiente para a detecção de obstáculos e feedback tátil.
 
-## Vídeo teste protoboard 
-
-- https://youtube.com/shorts/QIbxkw4j6M4?feature=share
-
 **3.Motor Vibratório:** 
 
 O motor vibratório foi testado para assegurar que ele respondesse corretamente aos comandos enviados pelo microcontrolador STM32F103C8 através do código programado no STM32CubeIDE. Durante os testes, verificou-se que o motor fornecia diferentes níveis de vibração conforme os comandos recebidos, permitindo que a intensidade e a duração da vibração fossem ajustadas de acordo com a proximidade dos obstáculos detectados pelos sensores ultrassônicos.
 Foi realizada uma calibração detalhada para garantir que a vibração fosse perceptível ao usuário, mas não causasse desconforto. Isso envolveu ajustar o PWM (Pulse Width Modulation) gerado pelo microcontrolador. O PWM foi configurado utilizando um canal de timer no STM32F103C8, onde a largura do duty cycle foi ajustada para controlar a intensidade da vibração do motor. O duty cycle determina a proporção de tempo em que o sinal de controle está em nível ALTO durante cada ciclo de PWM, afetando diretamente a força da vibração.
 
 O funcionamento do motor vibratório foi monitorado para garantir que o sinal PWM do microcontrolador fosse aplicado corretamente e que a resposta do motor fosse consistente e conforme o esperado. Os testes incluíram a verificação da resposta do motor a diferentes duty cycles e a análise de como essas variações influenciam a sensação de vibração para o usuário. Este processo garantiu que o motor vibratório fornecesse feedback tátil adequado, melhorando a eficácia do dispositivo como um todo.
+
+## Vídeo teste protoboard 
+
+- https://youtube.com/shorts/QIbxkw4j6M4?feature=share
 
 # Implementação do sistema
 
@@ -124,7 +124,7 @@ Uso no Código
 
 >* No código, a função sr04_read_distance utiliza essa interrupção para calcular a distância. Quando a borda de subida é capturada, o timer começa a contar. Quando a borda de descida é capturada, o tempo total é calculado e convertido em distância.
 
-** 4. Controle do Motor Vibratório**
+**4. Controle do Motor Vibratório**
 
 PWM (Pulse Width Modulation)
 
